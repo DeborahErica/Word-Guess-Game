@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic</title>
+    <link rel="stylesheet" type="text/css" href="assets/CSS/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/CSS/Style.css">
+</head>
+
+
+<style>
+    body{
+        background-color:beige;
+    }
+    h1{
+        font-size: 35px;
+        color: purple;
+        font-family: 'Times New Roman', Times, serif
+    }
+    h2{
+        font-size: 15px;
+        color: purple;
+        font-family: 'Times New Roman', Times, serif
+        }
+    h3{
+        font-size: 15px;
+        color:purple;
+        font-family: 'Times New Roman', Times, serif
+        }
+    h4{
+        font-size: 15px;
+        color:purple;
+        font-family: 'Times New Roman', Times, serif
+        }
+        h5{
+        font-size: 15px;
+        color: purple;
+        font-family: 'Times New Roman', Times, serif
+        }
+</style>
+<!-- game outline -->
+<body>
+    <h1>The Psychic Game:</h1>
+    <h2>Guess what letter I'm thinking of:</h2>
+    <h3>Wins:</h3>
+    <h4>Loses:</h4>
+    <h5>Guesses Left:</h5>
+    <h5>Your guesses so far:</h5>
+
+    <script type="text/javascript">
+        // // guess the word phrase for the psychic game //
+        // var phrase = ["Happy", "Summer", "2018"];
+        // var guesses = ["Wins", "Loses", "Guesses Left", "Your guesses so far"];
+
+        //pick a random letter in a variable called randomLetter
+        var letters = "abcdefghijklmnopqrstuvwxyz";
+        console.log(letters);
+        var letters = letters.split("");
+        console.log(letters);
+        var randomLetter =  letters[Math.floor(Math.random()*letters.length)];
+        console.log(randomLetter);
+
+        var wins = 0;
+        var losses = 0;
+        //look for a pressed letter
+        document.onkeyup = function(event){
+            console.log(event.key);
+            //script
+        
+            //check if randomLetter and pressedLetter is the same
+            if(event.key == randomLetter){
+                //addwins
+                wins++;
+                //tell the user you win
+                //new random letter in a variable called randomLetter
+            //else
+            }else{
+                //addlosses
+                //tell the user you lost try again
+            }
+        }
+    </script>
+       
+</body>
+</html>
