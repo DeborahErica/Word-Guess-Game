@@ -1,4 +1,38 @@
-.navbutton {
+/* .navbutton {
     background-color: black;
     color: orange
+} */
+body {
+        background-color:beige;
+    }
+
+h1 {
+    font-size: 35px;
+    color: purple;
+    font-family: 'Times New Roman', Times, serif
+} 
+
+h2 {
+    font-size: 15px;
+    color: purple;
+    font-family: 'Times New Roman', Times, serif
+}
+ 
+h3 {
+    font-size: 15px;
+    color:purple;
+    font-family: 'Times New Roman', Times, serif
+}
+
+h4 {
+    font-size: 15px;
+    color:purple;
+    font-family: 'Times New Roman', Times, serif
+}
+        
+h5 {
+    font-size: 15px;
+    color: purple;
+    font-family: 'Times New Roman', Times, serif
+        
 }

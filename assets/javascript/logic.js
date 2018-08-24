@@ -1,16 +1,54 @@
-var letters = ["a", "b", "c",];
+
+// // guess the word phrase for the psychic game //
+// var phrase = ["Happy", "Summer", "2018"];
+// var guesses = ["Wins", "Loses", "Guesses Left", "Your guesses so far"];
+
+//pick a random letter in a variable called randomLetter
+var letters = "abcdefghijklmnopqrstuvwxyz";
+console.log("Letters:" + letters);
+var letters = letters.split("");
+console.log("Letters split:" + letters);
+var randomLetter =  letters[Math.floor(Math.random()*letters.length)];
+console.log("Random Letter:" + randomLetter);
+//var numGuesses = letters[Math.floor(Math.random()*letters.length)];
+
+var wins = 0;
+var losses = 0;
+//look for a pressed letter
+document.onkeyup = function(event){
+    console.log("Any key hit:" + event.key);
+    //script
+
+    //check if randomLetter and pressedLetter is the same
+    if(event.key == randomLetter){
+        //addwins
+        wins++;
+        //tell the user you win
+        //new random letter in a variable called randomLetter
+    //else
+    }else{
+        //addlosses
+        //tell the user you lost try again
+    }
+}
+
+
+
+
+
+//var letters = ["a", "b", "c",];
 // Array of word options (all lowercase)
-var wordList = ["happy", "summer", "2018"]
+//var wordList = ["happy", "summer", "June", "July", "August"]
 //soultion here
-var chosenword = "";
+//var chosenword = "";
 //this will break the solution into individual letters to be stored in an array.
-var lettersInChosenWord = [];
+//var lettersInChosenWord = [];
 //Number of blanks we show based on solution
-var numBlanks = 0;
+//var numBlanks = 0;
 //Holds a mix of blank and solved letters (ex: 'n,_ _, n, _').
-var blanksAndSuccess = [];
+//var blanksAndSuccesses = [];
 //Holds all of the wrong guesses
-var wrongGuesses = [];
+//var wrongGuesses = [];
 
 // Game counters
 var winCounter = 0 ;
@@ -26,42 +64,42 @@ var numGuesses = 10;
 
 function startGame(){
     //Reset the guesses back to 0.
-    numGuesses = 10;
+   numGuesses = 10;
 }
 
 //Solution is chosen randomly from word list
-chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
+//chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
 // The word is broken into individual letters. 
-LettersInChosenWord = chosen.split("");
+//LettersInChosenWord = chosenWord.split("");
 //we count the number of letters in the word. 
-numBlanks = lettersInChosenWord.length;
+//numBlanks = lettersInChosenWord.length;
 
 // We print the solution in console (for testing). 
-console.log(chosenWord);
+//console.log("Chosen Word:" + chosenWord);
 
 //critical Line - reset the guess and success array at each round. 
-blanksAndSuccess = [];
+//blanksAndSuccess = [];
 // reset the wrong guesses from the previous round. 
-wrongGuesses = [];
+//wrongGuesses = [];
 
 //blankAndSuccess list with appropriate number of blanks
 // number of numbers in a solution 
-for (var i = 0; i< numBlanks; i++) {
-    blanksAndSuccess.push("_");
-}
+//for (var i = 0; i< numBlanks; i++) {
+  //  blanksAndSuccess.push("_");
+//}
 
 //Print the initial blanks in console.
-console.log(blanksAndSuccess);
+//console.log("blanksAndSuccess:" + blanksAndSuccess);
 
 // Reprints the guesses left to 10
-document.getElementById("guesses-left").innerHTML = numGuesses; 
+//document.getElementById("guesses-left").innerHTML = numGuesses; 
 
 // Prints the blanks at the beginning of each round in HTML
-document.getElementById("word-blanks").innerHTML = blanksAndSuccess.join(" ");
+//document.getElementById("word-blanks").innerHTML = blanksAndSuccess.join(" ");
 
 //Clears the wrong guesses from the previous round
-document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
-}
+document.getElementById("guesses-so-far").innerHTML = wrongGuesses.join(" ");
+
 
 //checkLetters() function
 //It's where we will do all of the comparison matches. 
@@ -89,7 +127,7 @@ function checkLetters(letter) {
          } 
      }
      //logging for testing
-     console.log(blanksAndSuccesses);
+     console.log("blanksAndSuccess2:" + blanksAndSuccesses);
  }
 // if the letter doesn't exist at all...
 else {
@@ -104,17 +142,17 @@ else {
 function roundComplete() {
 
     //First, log an initial status update in the console telling us how many wins
-    console.log("WinCount:" +winCounter + "| LossCount: " + lossCounter + "| NumGuesses: " + numGuesses);
+  //  console.log("WinCount:" +winCounter + "| LossCount: " + lossesCounter + "| NumGuesses: " + numGuesses);
 
     // update the HTML to reflect the new number of guesses. Also update the correct guesses.
-document.getElementById("guess-left").innerHTML = blanksAndSuccesses.join(" ");
+//document.getElementById("guesses-left").innerHTML = blanksAndSuccesses.join(" ");
 // This will print the array of guesses and blanks onto the page.
 document.getElementById("word-blanks").innerHTML = blanksAndSuccess.join(" ");
 //This will print the wrong guesses onto the page.
 document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
 
 // If all the letters match the solution
-if (lettersInChosenWord.toString() === blanksAndSuccess.toString()) {
+if (lettersInChosenWord.toString() === blanksAndSuccesses.toString()) {
     // .. add to the win counter and give the user an alert 
     winCounter++;
     alert("You Win!")

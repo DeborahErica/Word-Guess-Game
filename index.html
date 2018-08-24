@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Psychic Game</title>
     <link rel="stylesheet" type="text/css" href="assets/CSS/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/CSS/Style.css">
-    <link rel='stylesheet' href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
+    
 </head>
 
 <body>
@@ -26,36 +26,7 @@
 
 </body>
 
-<style>
-    body{
-        background-color:beige;
-    }
-    h1{
-        font-size: 35px;
-        color: purple;
-        font-family: 'Times New Roman', Times, serif
-    }
-    h2{
-        font-size: 15px;
-        color: purple;
-        font-family: 'Times New Roman', Times, serif
-        }
-    h3{
-        font-size: 15px;
-        color:purple;
-        font-family: 'Times New Roman', Times, serif
-        }
-    h4{
-        font-size: 15px;
-        color:purple;
-        font-family: 'Times New Roman', Times, serif
-        }
-        h5{
-        font-size: 15px;
-        color: purple;
-        font-family: 'Times New Roman', Times, serif
-        }
-</style>
+
 <!--game outline-->
 <body>
     <h1>The Psychic Game:</h1>
@@ -63,7 +34,7 @@
 
     <div class="card-body">
             <!-- word blanks-->
-            <h3 id="blank-words">_ _ _ _ _ _ </h3>
+            <h3 id="word-blanks">_ _ _ _ _ _ </h3>
         </div>
 
     <p>Wins: <span id="wins">0</span></p>
@@ -73,41 +44,9 @@
     <p>Guesses Left:<span id="guesses-left"></span></p>
     <h5>Your guesses so far:<span id="guesses-so-far"></span></h5>
 
-    <script type="text/javascript">
-        // // guess the word phrase for the psychic game //
-        // var phrase = ["Happy", "Summer", "2018"];
-        // var guesses = ["Wins", "Loses", "Guesses Left", "Your guesses so far"];
-
-        //pick a random letter in a variable called randomLetter
-        var letters = "abcdefghijklmnopqrstuvwxyz";
-        console.log(letters);
-        var letters = letters.split("");
-        console.log(letters);
-        var randomLetter =  letters[Math.floor(Math.random()*letters.length)];
-        console.log(randomLetter);
-
-        var wins = 0;
-        var losses = 0;
-        //look for a pressed letter
-        document.onkeyup = function(event){
-            console.log(event.key);
-            //script
-        
-            //check if randomLetter and pressedLetter is the same
-            if(event.key == randomLetter){
-                //addwins
-                wins++;
-                //tell the user you win
-                //new random letter in a variable called randomLetter
-            //else
-            }else{
-                //addlosses
-                //tell the user you lost try again
-            }
-        }
-    </script>
+   
        
 <!-- Adds a link to the JavaScript file. Loaded at the bottom so it waits for the HTML content to display first. If you put this at the top it will crash, because the HTML IDs won"t exist yet.-->
-<script src="logic.js"></script>
+<script src="assets/javascript/logic.js"></script>
 </body>
 </html>
