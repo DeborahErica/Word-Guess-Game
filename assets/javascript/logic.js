@@ -1,5 +1,5 @@
 
-// // guess the word phrase for the psychic game //
+// guess the word phrase for the psychic game //
 // var phrase = ["Happy", "Summer", "2018"];
 // var guesses = ["Wins", "Loses", "Guesses Left", "Your guesses so far"];
 
@@ -16,15 +16,15 @@ var wins = 0;
 var losses = 0;
 //look for a pressed letter
 document.onkeyup = function(event){
-    console.log("Any key hit:" + event.key);
-    //script
+console.log("Any key hit:" + event.key);
+//script
 
-    //check if randomLetter and pressedLetter is the same
-    if(event.key == randomLetter){
-        //addwins
-        wins++;
-        //tell the user you win
-        //new random letter in a variable called randomLetter
+//check if randomLetter and pressedLetter is the same
+if(event.key == randomLetter){
+    //addwins
+    wins++;
+    //tell the user you win
+    //new random letter in a variable called randomLetter
     //else
     }else{
         //addlosses
@@ -36,19 +36,7 @@ document.onkeyup = function(event){
 
 
 
-//var letters = ["a", "b", "c",];
-// Array of word options (all lowercase)
-//var wordList = ["happy", "summer", "June", "July", "August"]
-//soultion here
-//var chosenword = "";
-//this will break the solution into individual letters to be stored in an array.
-//var lettersInChosenWord = [];
-//Number of blanks we show based on solution
-//var numBlanks = 0;
-//Holds a mix of blank and solved letters (ex: 'n,_ _, n, _').
-//var blanksAndSuccesses = [];
-//Holds all of the wrong guesses
-//var wrongGuesses = [];
+
 
 // Game counters
 var winCounter = 0 ;
@@ -63,9 +51,12 @@ var numGuesses = 10;
 //this is how we will start and restart the game
 
 function startGame(){
-    //Reset the guesses back to 0.
+//Reset the guesses back to 0.
    numGuesses = 10;
 }
+
+//Variables that set the initial part of the game 
+
 
 //Solution is chosen randomly from word list
 //chosenWord = wordList[Math.floor(Math.random() * wordList.length)];
@@ -95,7 +86,7 @@ function startGame(){
 //document.getElementById("guesses-left").innerHTML = numGuesses; 
 
 // Prints the blanks at the beginning of each round in HTML
-//document.getElementById("word-blanks").innerHTML = blanksAndSuccess.join(" ");
+//document.getElementById("letter-blanks").innerHTML = blanksAndSuccess.join(" ");
 
 //Clears the wrong guesses from the previous round
 document.getElementById("guesses-so-far").innerHTML = wrongGuesses.join(" ");
@@ -141,13 +132,13 @@ else {
 // coded needed to run after each guess is made
 function roundComplete() {
 
-    //First, log an initial status update in the console telling us how many wins
-  //  console.log("WinCount:" +winCounter + "| LossCount: " + lossesCounter + "| NumGuesses: " + numGuesses);
+//First, log an initial status update in the console telling us how many wins
+//  console.log("WinCount:" +winCounter + "| LossCount: " + lossesCounter + "| NumGuesses: " + numGuesses);
 
-    // update the HTML to reflect the new number of guesses. Also update the correct guesses.
+// update the HTML to reflect the new number of guesses. Also update the correct guesses.
 //document.getElementById("guesses-left").innerHTML = blanksAndSuccesses.join(" ");
 // This will print the array of guesses and blanks onto the page.
-document.getElementById("word-blanks").innerHTML = blanksAndSuccess.join(" ");
+document.getElementById("letter-blanks").innerHTML = blanksAndSuccess.join(" ");
 //This will print the wrong guesses onto the page.
 document.getElementById("wrong-guesses").innerHTML = wrongGuesses.join(" ");
 
