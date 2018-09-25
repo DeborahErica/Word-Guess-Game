@@ -69,3 +69,91 @@ var wordGuessGame = {
     
     }     
 },
+// Variables that set the initial state if our wordGuess game. 
+
+wordInPlay: null;
+lettersOfTheWord: [],
+matchedLetters: [], 
+guessedLetters: [],
+guessesLeft: 0,
+totalGuesses: null, 
+wins: 0, 
+
+//The setupGame method is called when the page first loads
+setupGame: function(){
+    //Here we pick a random word
+    var objKeys = Object.keys(this.wordsToPick);
+    this.wordInPlay = objKeys[Math.floor(Math.random() * objKeys.length)];
+
+    //Split the chosen word up into its individual letters
+    this.lettersOfTheWord = this.wordInPlay.split("");
+    //Builds the representation of hte word we are trying to guess and displays it on the page
+    // At the start it will be all underscores since we haven't guessed any letters
+    this.rebuildWordView();
+    //This function sets the number of guesses the user gets, and renders it to the HTML. 
+    this.processUpdateTotalGuesses();
+};
+
+//This function is run whenever the user guesses a letter..
+updatePage: function(letter) {
+    //If the user has no guess left restart the game
+    if(this.guessesLeft === 0) { 
+        this.restartGame();
+    }
+    //Otherwise
+    else{ 
+        //Check for and handle incorrect guesses
+        this.updateGuesses(Letter);
+        
+        //Check for and handle incorrect guesses
+        this.updateMatchedLetters(Letters);
+
+        //Rebuild the view of the word. Guesses letters are revealed, non-guessed letters, have a "_".
+        this.rebuildWordView();
+
+        //If the user wins, restart the game. 
+        if(this.updateWins() === true){
+            this.restartGame();
+        }
+    }
+},
+
+// this function governs what happens when the user makes an incorrect guess (that they havent guessed before).
+updateGuesses: function(letter) {
+    // If the letter is not in the guessedLetters array, and the letter is not in the LettersOfTheWord array.. 
+    if((this.guessedLetters.indexOf(letter) === -1) && (this.lettersOfTheWord.indexOf(letter) === -1)){
+
+    // Add the letter to the guessedLetter array. 
+    this.guessedLetters.push(letter);
+    
+    //Decrease guesses by one.
+    this.guessesLeft--;
+
+    // Update guesses remaining and guessed letters on the page. 
+    document.querySelector("#guesses-remaining").innerHTML = this.guessesLeft;
+    document.querySelector("#guessed-letters").innerHTML = this.guessedLetters.join(", ");
+    }
+},
+
+// This function sets the initial guesses the user gets.
+processUpdateTotalGuesses: function(){
+// The user will get more guesses the longer the word is.
+ this.totalGuesses = this.lettersOfTheWord.length + 5;
+ this.guessesLeft = this.totalGuesses;
+
+ //Render the guesses left to the page.
+ document.querySelector("#guesses-remaining").innerHTML = this.guessesLeft;
+
+};
+
+//This function governs what happens if the user makes a successful guess.
+updateMatchedLetters: function(letter) {
+//Loop through the letters of the solution, and we haven't guessed it already
+for (var i = 0; i < this.lettersofTheWord.length; i++) {
+   //If the guessed letter is in the solution, and we  haven't guessed it already.. 
+if(this.matchedLetters.indexOf(this.lettersOfTheWord[i]) !==-1){
+    wordView += this.lettersOfTheWord[i];
+}
+}
+
+}
