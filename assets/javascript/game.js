@@ -80,7 +80,7 @@ totalGuesses: null,
 wins: 0, 
 
 //The setupGame method is called when the page first loads
-setupGame: function(){
+setupGame: function() {
     //Here we pick a random word
     var objKeys = Object.keys(this.wordsToPick);
     this.wordInPlay = objKeys[Math.floor(Math.random() * objKeys.length)];
@@ -151,9 +151,97 @@ updateMatchedLetters: function(letter) {
 //Loop through the letters of the solution, and we haven't guessed it already
 for (var i = 0; i < this.lettersofTheWord.length; i++) {
    //If the guessed letter is in the solution, and we  haven't guessed it already.. 
-if(this.matchedLetters.indexOf(this.lettersOfTheWord[i]) !==-1){
-    wordView += this.lettersOfTheWord[i];
-}
-}
+if((letter === this.lettersOfTheWord[i] && (this.matchedLetters.indexOf(letter) === -1)){
+    //Push the newly guessed letter into the matchedLetters array.
+    this.matchedLetters.push(letter); 
+        }
+    }   
 
+};
+
+//This function builds the display of the word that is currently being guessed.
+rebuildWordView: function(){
+        var wordView = "";
+//Loop through the letters of the word we are trying to guess. 
+for(var i =0; i < this.lettersOfTheWord.length; i++) {
+    //If the current letter has been guessed, display that letter. 
+    if(this.matchedLetters.indexOf(this.lettersOfTheWord[i]) !== -1){
+        wordView += this.lettersofTheWord[i]; 
+    }
+// If it hasn't been guessed, display a "_" instead.
+else{
+    wordView += "&nbsp;_&nbsp;";
+    }     
+  }
+
+// Update the page with the new string we built. 
+document.querySelector("#guessed-letters").innerHTML = "";
+this.wordInPlay = null;
+this.lettersOfTheWord = [];
+this.matchedLetters = [];
+this.guessesLeft = 0;
+this.totalGuesses = 0;
+this.letterGuessed = null;
+this.setupGame();
+this.rebuildWordView();
+},
+
+// Function that checks to see if the user has won. 
+updateWins: function() {
+    var wins; 
+
+    // this wont work for words with double or tripple letters 
+    //var lettersOfTheWordClone = this.lettersOfTheWord.slice(); // clones the array
+    //this.matchedLetters.sort().join('') == lettersOfTheWordClone.sort().join('')
+
+//If you haven't correctly guessed a letter in the word yet, we set win to false. 
+if(this.matchedLetters.length === 0) {
+    win = false;
 }
+//Othewise, we set win to true.
+else {
+    win = true;
+}
+//If a letter appears in the letterOfTheWord array, but not in the matchedLetters array,
+//If you haven't yet guessed all the letters in the word, you don't win yet.
+for(var i = 0; i < this.lettersOfTheWord.length; i++){
+    if(this.matchedLetters.indexOf(this.lettersOfTheWord[i]) === -1){ 
+        win = false; 
+    }
+   } 
+// If win is true
+if (win) {
+// Increment wins.
+this.wins = this.wins + 1; 
+//Update wins on the page. 
+document.querySelector("#wins").innerHTML = this.wins;
+
+//Update the song title and band on the page.
+document.querySelector("#music").innerHTML = this.wordsToPick[this.wordInPlay].song + " By " + this.wordInPlay; 
+
+//Update the image of the band on the page.
+document.querySelector("#bandDiv").innerHTML = "<img class='band-image' src='../images/" +
+this.wordsToPick[this.wordInPlay].picture + "' atl='" +
+this.wordsToPick[this.WordInPlay].song + "'>";
+
+//Paly an audio track of the band.
+var audio = new Audio(this.wordsToPick[this.wordInPlay].preview);
+audio.play();
+
+//return true; which will trigger the restart of our game in the update page funtion 
+ return true;
+}
+// If win is false, return false to the updatePage function. The game goes on!
+return false; 
+  } 
+}; 
+// Initialize the game when the page loads.
+wordGuessGame.setupGame();
+
+//when a key is pressed
+document.onkeyup = function(event) {
+    //capture pressed key and make it lowercase. 
+wordGuessGame.letterGuessed = String.fromCharCode(event.which).toLowerCase();
+//pass the guessed letter into our updatePage function to run the game logic. 
+wordGuessGame.updatePage(wordGuessGame.letterGuessed); 
+    };
